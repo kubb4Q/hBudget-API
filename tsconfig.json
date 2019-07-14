@@ -13,18 +13,10 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "alwaysStrict": true,
-    "types": [
-      "node",
-      "jest",
-      "express"
-    ],
+    "types": ["node", "jest", "express"],
     "allowJs": true,
     "importHelpers": true
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }
