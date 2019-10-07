@@ -1,7 +1,6 @@
-import { Client, ClientConfig } from "pg";
-import { DbClientDependencies } from "infrastructure";
-import { OperationResult, CustomErrorType, CustomError } from "core";
-import { tryCatch, right, taskEither } from "fp-ts/lib/TaskEither";
+import { Client, ClientConfig } from 'pg';
+import { DbClientDependencies } from 'infrastructure';
+import { pipe, tryCatch } from 'ramda';
 
 let dbClient: Client;
 
@@ -13,14 +12,16 @@ const initializeClient = async (dbConfig: ClientConfig) => {
   return dbClient;
 };
 
-const initializeDbClient = (dbConfig: ClientConfig): OperationResult<Client> =>
+const initializeDbClient = (dbConfig: ClientConfig): Promise<Client> =>
   tryCatch(
-    () => initializeClient(dbConfig),
-    (): CustomError => ({
-      type: CustomErrorType.DatabaseClientError,
-      message: "Unable to connect to database"
-    })
-  );
+    pipe(
+      () => dbConfig,
+      initializeClient,
+    ),
+    error => {
+      throw error;
+    },
+  )();
 
 export const makeDbClient = ({ dbConfig }: DbClientDependencies): (() => OperationResult<Client>) => () =>
   dbClient ? taskEither.of<CustomError, Client>(dbClient) : initializeDbClient(dbConfig);

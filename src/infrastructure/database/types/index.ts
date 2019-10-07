@@ -1,1 +1,1 @@
-export * from "./db-client-dependencies";
+export * from './db-client-dependencies';

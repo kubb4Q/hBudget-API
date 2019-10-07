@@ -1,4 +1,4 @@
 export enum CustomErrorType {
   // Db Client Errors
-  DatabaseClientError = "DatabaseClientError"
+  DatabaseClientError = 'DatabaseClientError',
 }
