@@ -23,5 +23,5 @@ const initializeDbClient = (dbConfig: ClientConfig): Promise<Client> =>
     },
   )();
 
-export const makeDbClient = ({ dbConfig }: DbClientDependencies): (() => OperationResult<Client>) => () =>
-  dbClient ? taskEither.of<CustomError, Client>(dbClient) : initializeDbClient(dbConfig);
+export const makeDbClient = ({ dbConfig }: DbClientDependencies): (() => Promise<Client>) => () =>
+  dbClient ? Promise.resolve(dbClient) : initializeDbClient(dbConfig);
