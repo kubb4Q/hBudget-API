@@ -3,7 +3,7 @@
     "module": "commonjs",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "target": "es2018",
+    "target": "es2019",
     "noImplicitAny": true,
     "moduleResolution": "node",
     "sourceMap": true,
@@ -15,7 +15,8 @@
     "alwaysStrict": true,
     "types": ["node", "jest", "express"],
     "allowJs": true,
-    "importHelpers": true
+    "importHelpers": true,
+    "lib": ["es7", "dom"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
