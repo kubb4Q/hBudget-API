@@ -35,23 +35,6 @@ describe('statement-category-use-cases', () => {
         await createStatementCategoryFn(statementCategory);
         // then
       } catch (e) {
-        expect(mockedDbclinet.createStatementCategory).toBeCalledWith(statementCategory);
-        expect(e).toBe(error);
-      }
-    });
-
-    it('should throw validation error when input data is invalid', async () => {
-      // given
-      const statementCategory: StatementCategoryCreateDto = {
-        name: null,
-        ownerId: 'ownerId',
-      };
-      const error = Error('error message');
-      try {
-        // when
-        await createStatementCategoryFn(statementCategory);
-        // then
-      } catch (e) {
         expect(e).toBe(error);
       }
     });
